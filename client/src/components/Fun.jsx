@@ -9,11 +9,15 @@ function Fun() {
     }
 
     return (
-        <div>
-            <h1>What's up, I'm Matt</h1>
-            <p>The count is {count}</p>
-            <button onClick = {increaseCount} >Click Me</button>
-        </div>
+        <>
+            <h1 className='text-center mt-5'>Counter</h1>
+            <div className='form'>
+                <div className='text-center p-4'>
+                    <p>The count is {count}</p>
+                    <button onClick = {increaseCount} >Click Me</button>
+                </div>
+            </div>
+        </>
     )
 }
 

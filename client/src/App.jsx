@@ -8,7 +8,18 @@ function App() {
   
   return (
     <>
-      <TodoList />
+      <div id='container'>
+          <div>
+          < TodoList />
+          </div>
+          <div>
+          < Fun />
+          </div>
+          <div>
+          < Counter />
+          </div>
+      </div>
+
     </>
   )
 }

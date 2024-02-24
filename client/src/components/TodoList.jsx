@@ -1,13 +1,40 @@
 import React, { useState } from 'react'
+import TodoForm from './TodoForm'
 
 function TodoList() {
 
-    const [newTodo, setNewTodo] = useState("")
-    const [TodoList, setTodoList] = useState("")
+    
+    const [todos, setTodos] = useState([])
 
+    const addTodo = (title) => {
+        setTodos((currentTodos ) => {
+            return [
+                ...currentTodos,
+                { id: crypto.randomUUID(), title, completed: false}
+            ]
+        })
+    }
+    
 
-    const addTodo= () => {
-        
+    const toggleTodo = (id, completed) => {
+        setTodos(currentTodos => {
+            return(
+                currentTodos.map(todo => {
+                    if (todo.id === id)  {
+                        return { ...todo, completed}
+                    }
+                    return todo
+                })
+            )
+        })
+    }
+
+    const deleteTodo = (id) => {
+        setTodos(currentTodos => {
+            return(
+                currentTodos.filter(todo => todo.id !== id)
+            )
+        })
     }
 
     return (
@@ -15,18 +42,13 @@ function TodoList() {
             <h1 className='text-center mt-5'>To-Do List</h1>
             <div id='container' >
                 <div className=' p-4 form'>
-                    <form className=''>
-                        <div className='form-group'>
-                            <label className="form-label">Add Todo:</label>
-                            <input className='form-control' />
-
-                            <button onClick={addTodo}></button>
-                        </div>
-                    </form>
+                    <TodoForm addTodo={addTodo}/>
+                    
                 </div>
             </div>
         </>
     )
 }
+
 
 export default TodoList
