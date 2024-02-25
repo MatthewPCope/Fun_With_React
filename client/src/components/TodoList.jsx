@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import TodoForm from './TodoForm'
+import TodoTable from './TodoTable'
 
 function TodoList() {
 
@@ -14,8 +15,6 @@ function TodoList() {
             ]
         })
     }
-    
-
     const toggleTodo = (id, completed) => {
         setTodos(currentTodos => {
             return(
@@ -37,13 +36,15 @@ function TodoList() {
         })
     }
 
+
+
     return (
         <>
             <h1 className='text-center mt-5'>To-Do List</h1>
             <div id='container' >
                 <div className=' p-4 form'>
                     <TodoForm addTodo={addTodo}/>
-                    
+                    <TodoTable todos= {todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
                 </div>
             </div>
         </>

@@ -1,20 +1,21 @@
+import TodoItem from "./TodoItem"
 
-export default function TodoTable() {
-    return (
-        <ul>
-                        {todos.length === 0 && "No todos"}
-                        {todos.map(todo => {
-                            return (
-                            <li key={todo.id}>
-                                <label>{todo.title}
-                                    <input type="checkbox" checked={todo.completed}
-                                    onChange={e => toggleTodo(todo.id, e.target.checked)}/>
-                                </label>
-                                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                            </li>
-                            )
-                        })}
-                    </ul>
+export default function TodoTable({todos, toggleTodo, deleleTodo}) {
+
     
+    return (
+        <>
+            <ul>
+                {todos.length === 0 && "No todos"}
+                    {todos.map(todo => {
+                        return (
+                        <TodoItem {...todo} key={todo.id} toggleTodo={toggleTodo} deleleTodo={deleleTodo}/>
+                        )
+                    })}
+            </ul>
+        </>
     )
 }
+
+
+
