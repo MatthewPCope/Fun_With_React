@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import TodoForm from './TodoForm'
 import TodoTable from './TodoTable'
 
 function TodoList() {
 
     
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState(() => {
+        const localValue = localStorage.getItem("ITEMS")
+        if (localValue == null) return []
+
+        return JSON.parse(localValue)
+    })
+
+    useEffect(() => {
+        localStorage.setItem("ITEMS", JSON.stringify(todos))
+    }, [todos])
 
     const addTodo = (title) => {
         setTodos((currentTodos ) => {
@@ -41,7 +50,7 @@ function TodoList() {
     return (
         <>
             <h1 className='text-center mt-5'>To-Do List</h1>
-            <div id='container' >
+            <div >
                 <div className=' p-4 form'>
                     <TodoForm addTodo={addTodo}/>
                     <TodoTable todos= {todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
